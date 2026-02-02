@@ -99,7 +99,7 @@ jobs:
         name: generated-panel-driver
 
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v1，2
       with:
         tag_name: ${{ inputs.release_tag }}
         name: "Generated Panel Driver ${{ inputs.release_tag }}"
