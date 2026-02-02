@@ -15,7 +15,7 @@ on:
         description: '发布版本标签'
         required: true
         type: string
-        default: 'Panel-Drivers-History'
+        default: '1.0.0'
 
 env:
   FDT_FILENAME: ${{ inputs.fdt_filename }}
