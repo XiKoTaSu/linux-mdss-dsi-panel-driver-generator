@@ -15,7 +15,7 @@ on:
         description: '发布版本标签'
         required: true
         type: string
-        default: 'v1.0.0'
+        default: 'Panel-Drivers-History'
 
 env:
   FDT_FILENAME: ${{ inputs.fdt_filename }}
@@ -24,8 +24,6 @@ env:
 jobs:
   generate-driver:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # 授予创建 Release 和上传资产的权限
     
     steps:
     - name: Checkout repository
@@ -99,10 +97,10 @@ jobs:
         name: generated-panel-driver
 
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ inputs.release_tag }}
-        name: "Generated Panel Driver ${{ inputs.release_tag }}"
+        release_name: "Generated Panel Driver ${{ inputs.release_tag }}"
         files: |
           panel-driver-*.tar.gz
         draft: false
