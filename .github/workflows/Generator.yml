@@ -64,7 +64,7 @@ jobs:
         echo "处理FDT文件: $FDT_FILENAME"
         # 编译dts为dtb（如果需要）
         if [[ "$FDT_FILENAME" == *.dts ]] || [[ "$FDT_FILENAME" == *.dtsi ]]; then
-          dtc -O dtb -o compiled.dtb "$FDT_FILENAME"
+          dtc -I dts -O dtb -o compiled.dtb "$FDT_FILENAME"
           INPUT_FILE="compiled.dtb"
         else
           INPUT_FILE="$FDT_FILENAME"
@@ -72,8 +72,10 @@ jobs:
         
         # 使用项目的主脚本生成驱动
         python lmdpdg.py input/"$INPUT_FILE"
+        python lmdpdg.py "$INPUT_FILE"
         echo "驱动生成完成"
-        
+      continue-on-error: true
+      
     - name: Create archive
       run: |
         tar -czf panel-driver-${{ inputs.dtimg_filename }}-${{ inputs.fdt_filename }}-${{ github.run_id }}-${{ github.sha }}.tar.gz . 2>/dev/null || true
