@@ -15,7 +15,7 @@ on:
         description: '发布版本标签'
         required: true
         type: string
-        default: 'v1.0.0'
+        default: 'Panel-Drivers-History'
 
 env:
   FDT_FILENAME: ${{ inputs.fdt_filename }}
@@ -84,7 +84,6 @@ jobs:
         name: generated-panel-driver
         path: |
           panel-driver-*.tar.gz
-          generated-output/
 
   create-release:
     needs: generate-driver
