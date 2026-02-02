@@ -78,7 +78,7 @@ jobs:
       run: |
         mkdir -p generated-output
         # 收集所有生成的文件
-        cp -r *.c *.h *.dtsi *.dts Makefile Kconfig generated-output/ 2>/dev/null || true
+        cp -r ./ generated-output/
         ls -la generated-output/
 
     - name: Create archive
