@@ -90,6 +90,9 @@ jobs:
     needs: generate-driver
     runs-on: ubuntu-latest
     if: always()
+    # 添加 contents: write 权限
+    permissions:
+      contents: write
     
     steps:
     - name: Download artifacts
@@ -101,7 +104,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ inputs.release_tag }}
-        release_name: "Generated Panel Driver ${{ inputs.release_tag }}"
+        name: "Generated Panel Driver ${{ inputs.release_tag }}"
         files: |
           panel-driver-*.tar.gz
         draft: false
